@@ -1,5 +1,5 @@
 //your variable declarations here
-SpaceShip bird = new SpaceShip();
+SpaceShip dragon = new SpaceShip();
 public void setup() 
 {
   //your code here
@@ -9,13 +9,9 @@ public void setup()
 public void draw() 
 {
   //your code here
-  bird.show();
+  dragon.show();
 }
-public void keyPressed()
-  if(key == 'Spacebar')
-  {
-    bird.accelerate;
-  }
+
 class SpaceShip extends Floater  
 {   
     //your code here
@@ -28,7 +24,7 @@ class SpaceShip extends Floater
       int[] yS = {18,15,2,2,6,0,-6,-2,-2,-15,-18,-16,-15,-15,-13,11,-10,-12,-8,-8,-6,-4,-4,-2,0,2,4,4,6,8,8,12,10,11,13,15,15,16};
       xCorners = xS;
       yCorners = yS;    
-      myColor = 125;
+      myColor = 200;
       myCenterX = 400;
       myCenterY = 400;
       myDirectionX = 0;
@@ -122,4 +118,16 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     endShape(CLOSE);  
   }   
 } 
-
+public void keyPressed()
+{
+  if(keyCode == UP)
+  {
+    dragon.accelerate(0.15);
+    background(0);
+    dragon.move();
+  }
+  if(keyCode == RIGHT)
+  {
+    
+  }
+}
