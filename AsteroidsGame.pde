@@ -9,6 +9,7 @@ public void setup()
 public void draw() 
 {
   //your code here
+  background(0);
   dragon.show();
 }
 
@@ -123,11 +124,22 @@ public void keyPressed()
   if(keyCode == UP)
   {
     dragon.accelerate(0.15);
-    background(0);
     dragon.move();
   }
   if(keyCode == RIGHT)
   {
-    
+    dragon.rotate(3);
+  }
+  if(keyCode == LEFT)
+  {
+    dragon.rotate(-3);
+  }
+  if(keyCode == DOWN)
+  {
+    dragon.setPointDirection((int)(Math.random()*360));
+    dragon.setDirectionX(0);
+    dragon.setDirectionY(0);
+    dragon.setX((int)(Math.random()*500));
+    dragon.setY((int)(Math.random()*500));
   }
 }
