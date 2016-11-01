@@ -1,18 +1,48 @@
 //your variable declarations here
+Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
 public void setup() 
 {
   //your code here
   size(800,800);
   background(0);
+  dragon.setX(400);
+  dragon.setY(400);
+  dragon.setDirectionX(0);
+  dragon.setDirectionY(0);
+  dragon.setPointDirection(0);
+  for(int i = 0; i < stars.length; i++)
+  {
+     stars[i] = new Star();
+  }
+
 }
 public void draw() 
 {
   //your code here
   background(0);
   dragon.show();
+  dragon.move();
+  for(int i = 0; i < stars.length; i++)
+  {
+    stars[i].show();
+  }
 }
 
+class Star
+{
+    private int myX, myY;
+    Star()
+    {
+      myX = (int)(Math.random()*800);
+      myY = (int)(Math.random()*800);
+    }
+    public void show()
+    {
+      color(255,255,255);
+      ellipse(myX,myY,3,3);
+    }
+}
 class SpaceShip extends Floater  
 {   
     //your code here
@@ -136,10 +166,15 @@ public void keyPressed()
   }
   if(keyCode == DOWN)
   {
+    dragon.accelerate(-0.15);
+    dragon.move();
+  }
+  if(keyCode == 'H')
+  {
     dragon.setPointDirection((int)(Math.random()*360));
     dragon.setDirectionX(0);
     dragon.setDirectionY(0);
-    dragon.setX((int)(Math.random()*500));
-    dragon.setY((int)(Math.random()*500));
+    dragon.setX((int)(Math.random()*800));
+    dragon.setY((int)(Math.random()*800));
   }
 }
