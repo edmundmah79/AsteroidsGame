@@ -15,8 +15,8 @@ public void setup()
   {
      stars[i] = new Star();
   }
-
 }
+
 public void draw() 
 {
   //your code here
@@ -72,6 +72,21 @@ class SpaceShip extends Floater
     public double getDirectionY() {return myDirectionY;}
     public void setPointDirection(int degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
+}
+class Asteroid extends Floater
+{
+  Asteroid()
+  {
+    corners = ;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    int[] xS = {};
+    int[] yS = {};
+    xCorners = xS;
+    yCorners = yS;
+    myColor = 100;
+  }
+
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
 {   
