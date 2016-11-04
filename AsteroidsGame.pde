@@ -77,7 +77,7 @@ class Asteroid extends Floater
 {
   Asteroid()
   {
-    corners = ;
+    corners =;
     xCorners = new int[corners];
     yCorners = new int[corners];
     int[] xS = {};
