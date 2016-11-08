@@ -1,7 +1,7 @@
 //your variable declarations here
 Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
-Asteroid rock = new Asteroid();
+Asteroid[] rocks = new Asteroid[25];
 public void setup() 
 {
   //your code here
@@ -16,6 +16,10 @@ public void setup()
   {
      stars[i] = new Star();
   }
+  for(int i = 0; i < rocks.length; i++)
+  {
+    rocks[i] = new Asteroid();
+  }
 }
 
 public void draw() 
@@ -28,7 +32,10 @@ public void draw()
   {
     stars[i].show();
   }
-  rock.show();
+  for(int i = 0;i < rocks.length; i++)
+  {
+    rocks[i].show();
+  }
 }
 
 class Star
@@ -77,6 +84,7 @@ class SpaceShip extends Floater
 }
 class Asteroid extends Floater
 {
+  private int asteRotate;
   Asteroid()
   {
     corners = 25;
@@ -87,11 +95,16 @@ class Asteroid extends Floater
     xCorners = xS;
     yCorners = yS;
     myColor = 100;
-    myCenterX = 400;
-    myCenterY = 400;
+    myCenterX = (int)(Math.random()*800);
+    myCenterY = (int)(Math.random()*800);
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
+    asteRotate = (int)(Math.random()*360);
+  }
+  public void move()
+  {
+    
   }
   public void setX(int x) {myCenterX = x;}
   public int getX() {return (int)myCenterX;}
@@ -103,6 +116,8 @@ class Asteroid extends Floater
   public double getDirectionY() {return myDirectionY;}
   public void setPointDirection(int degrees) {myPointDirection = degrees;}
   public double getPointDirection() {return myPointDirection;}
+  public void setRot(int x) {asteRotate = x;}
+  public int getRot() {return asteRotate;} 
 
 }
 abstract class Floater //Do NOT modify the Floater class! Make changes in the SpaceShip class 
