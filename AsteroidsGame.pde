@@ -1,7 +1,7 @@
 //your variable declarations here
 Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
-Asteroid[] rocks = new Asteroid[25];
+Asteroid[] rocks = new Asteroid[20];
 public void setup() 
 {
   //your code here
@@ -26,8 +26,6 @@ public void draw()
 {
   //your code here
   background(0);
-  dragon.show();
-  dragon.move();
   for(int i = 0; i < stars.length; i++)
   {
     stars[i].show();
@@ -35,7 +33,10 @@ public void draw()
   for(int i = 0;i < rocks.length; i++)
   {
     rocks[i].show();
+    rocks[i].move();
   }
+  dragon.show();
+  dragon.move();
 }
 
 class Star
@@ -85,6 +86,8 @@ class SpaceShip extends Floater
 class Asteroid extends Floater
 {
   private int asteRotate;
+  private int asteXMove;
+  private int asteYMove;
   Asteroid()
   {
     corners = 25;
@@ -100,11 +103,31 @@ class Asteroid extends Floater
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
-    asteRotate = (int)(Math.random()*360);
+    asteRotate = (int)(Math.random()*7)-3;
+    asteXMove = (int)(Math.random()*7)-3;
+    asteYMove = (int)(Math.random()*7)-3;
   }
   public void move()
   {
-    
+    myPointDirection += asteRotate; 
+    myCenterX += asteXMove;
+    myCenterY += asteYMove;
+    if(myCenterX >width)
+    {     
+      myCenterX = 0;    
+    }    
+    else if (myCenterX<0)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY >height)
+    {    
+      myCenterY = 0;    
+    }   
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    }   
   }
   public void setX(int x) {myCenterX = x;}
   public int getX() {return (int)myCenterX;}
