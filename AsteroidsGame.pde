@@ -5,10 +5,10 @@ Asteroid[] rocks = new Asteroid[20];
 public void setup() 
 {
   //your code here
-  size(800,800);
+  size(1000,700);
   background(0);
-  dragon.setX(400);
-  dragon.setY(400);
+  dragon.setX(500);
+  dragon.setY(350);
   dragon.setDirectionX(0);
   dragon.setDirectionY(0);
   dragon.setPointDirection(0);
@@ -44,8 +44,8 @@ class Star
     private int myX, myY;
     Star()
     {
-      myX = (int)(Math.random()*800);
-      myY = (int)(Math.random()*800);
+      myX = (int)(Math.random()*1000);
+      myY = (int)(Math.random()*700);
     }
     public void show()
     {
@@ -67,8 +67,8 @@ class SpaceShip extends Floater
       xCorners = xS;
       yCorners = yS;    
       myColor = 200;
-      myCenterX = 400;
-      myCenterY = 400;
+      myCenterX = 500;
+      myCenterY = 350;
       myDirectionX = 0;
       myDirectionY = 0;
       myPointDirection = 0;
@@ -99,8 +99,8 @@ class Asteroid extends Floater
     xCorners = xS;
     yCorners = yS;
     myColor = 100;
-    myCenterX = (int)(Math.random()*800);
-    myCenterY = (int)(Math.random()*800);
+    myCenterX = (int)(Math.random()*1000);
+    myCenterY = (int)(Math.random()*700);
     myDirectionX = 0;
     myDirectionY = 0;
     myPointDirection = 0;
@@ -245,7 +245,7 @@ public void keyPressed()
     dragon.setPointDirection((int)(Math.random()*360));
     dragon.setDirectionX(0);
     dragon.setDirectionY(0);
-    dragon.setX((int)(Math.random()*800));
-    dragon.setY((int)(Math.random()*800));
+    dragon.setX((int)(Math.random()*1000));
+    dragon.setY((int)(Math.random()*700));
   }
 }
