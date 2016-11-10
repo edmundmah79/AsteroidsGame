@@ -49,7 +49,8 @@ class Star
     }
     public void show()
     {
-      color(255,255,255);
+      fill(135,206,235);
+      noStroke();
       ellipse(myX,myY,3,3);
     }
 }
