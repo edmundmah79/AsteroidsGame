@@ -2,6 +2,12 @@
 Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
 Asteroid[] rocks = new Asteroid[20];
+int fireX1 = (int)((-8* Math.cos(dRadians)) - (-16 * Math.sin(dRadians))+myCenterX);
+int fireX2 = (int)((-8* Math.cos(dRadians)) + (-16 * Math.sin(dRadians))+myCenterX);
+int fireX3 = (int)((-10* Math.cos(dRadians)) - (-14 * Math.sin(dRadians))+myCenterX);
+int fireY1 = (int)((-10* Math.cos(dRadians)) + (-14 * Math.sin(dRadians))+myCenterX);
+int fireY2 = (int)((-8* Math.cos(dRadians)) - (-12 * Math.sin(dRadians))+myCenterX);
+int fireY3 = (int)((-8* Math.cos(dRadians)) + (-12 * Math.sin(dRadians))+myCenterX);
 public void setup() 
 {
   //your code here
@@ -37,6 +43,12 @@ public void draw()
   }
   dragon.show();
   dragon.move();
+  fireX1 = (int)((-8* Math.cos(dRadians)) - (-16 * Math.sin(dRadians))+myCenterX);
+  fireX2 = (int)((-8* Math.cos(dRadians)) + (-16 * Math.sin(dRadians))+myCenterX);
+  fireX3 = (int)((-10* Math.cos(dRadians)) - (-14 * Math.sin(dRadians))+myCenterX);
+  fireY1 = (int)((-10* Math.cos(dRadians)) + (-14 * Math.sin(dRadians))+myCenterX);
+  fireY2 = (int)((-8* Math.cos(dRadians)) - (-12 * Math.sin(dRadians))+myCenterX);
+  fireY3 = (int)((-8* Math.cos(dRadians)) + (-12 * Math.sin(dRadians))+myCenterX);
 }
 
 class Star
@@ -226,6 +238,8 @@ public void keyPressed()
   {
     dragon.accelerate(0.15);
     dragon.move();
+    fill(255,0,0)
+    triangle(fireX1, fireY1, fireX2, fireY2, fireX3, fireY3);
   }
   if(keyCode == RIGHT)
   {
