@@ -2,13 +2,14 @@
 Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
 Asteroid[] rocks = new Asteroid[20];
-int fireX1 = (int)((-8* Math.cos(dRadians)) - (-16 * Math.sin(dRadians))+myCenterX);
-int fireX2 = (int)((-8* Math.cos(dRadians)) + (-16 * Math.sin(dRadians))+myCenterX);
-int fireX3 = (int)((-10* Math.cos(dRadians)) - (-14 * Math.sin(dRadians))+myCenterX);
-int fireY1 = (int)((-10* Math.cos(dRadians)) + (-14 * Math.sin(dRadians))+myCenterX);
-int fireY2 = (int)((-8* Math.cos(dRadians)) - (-12 * Math.sin(dRadians))+myCenterX);
-int fireY3 = (int)((-8* Math.cos(dRadians)) + (-12 * Math.sin(dRadians))+myCenterX);
+int fireX1 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-16 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
+int fireY1 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-16 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
+int fireX2 = (int)((-20* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-14 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
+int fireY2 = (int)((-20* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-14 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
+int fireX3 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-12 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
+int fireY3 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-12 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
 public void setup() 
+
 {
   //your code here
   size(1000,700);
@@ -27,7 +28,6 @@ public void setup()
     rocks[i] = new Asteroid();
   }
 }
-
 public void draw() 
 {
   //your code here
@@ -43,12 +43,12 @@ public void draw()
   }
   dragon.show();
   dragon.move();
-  fireX1 = (int)((-8* Math.cos(dRadians)) - (-16 * Math.sin(dRadians))+myCenterX);
-  fireX2 = (int)((-8* Math.cos(dRadians)) + (-16 * Math.sin(dRadians))+myCenterX);
-  fireX3 = (int)((-10* Math.cos(dRadians)) - (-14 * Math.sin(dRadians))+myCenterX);
-  fireY1 = (int)((-10* Math.cos(dRadians)) + (-14 * Math.sin(dRadians))+myCenterX);
-  fireY2 = (int)((-8* Math.cos(dRadians)) - (-12 * Math.sin(dRadians))+myCenterX);
-  fireY3 = (int)((-8* Math.cos(dRadians)) + (-12 * Math.sin(dRadians))+myCenterX);
+  fireX1 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-16 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
+  fireY1 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-16 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
+  fireX2 = (int)((-20* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-14 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
+  fireY2 = (int)((-20* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-14 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
+  fireX3 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-12 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
+  fireY3 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-12 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
 }
 
 class Star
@@ -238,7 +238,7 @@ public void keyPressed()
   {
     dragon.accelerate(0.15);
     dragon.move();
-    fill(255,0,0)
+    fill(255,0,0);
     triangle(fireX1, fireY1, fireX2, fireY2, fireX3, fireY3);
   }
   if(keyCode == RIGHT)
