@@ -2,12 +2,7 @@
 Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
 Asteroid[] rocks = new Asteroid[20];
-int fireX1 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-16 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
-int fireY1 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-16 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
-int fireX2 = (int)((-20* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-14 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
-int fireY2 = (int)((-20* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-14 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
-int fireX3 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-12 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
-int fireY3 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-12 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
+
 public void setup() 
 
 {
@@ -43,12 +38,6 @@ public void draw()
   }
   dragon.show();
   dragon.move();
-  fireX1 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-16 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
-  fireY1 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-16 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
-  fireX2 = (int)((-20* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-14 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
-  fireY2 = (int)((-20* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-14 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
-  fireX3 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) - (-12 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getX());
-  fireY3 = (int)((-8* Math.cos(dragon.getPointDirection()*(Math.PI/180))) + (-12 * Math.sin(dragon.getPointDirection()*(Math.PI/180)))+dragon.getY());
 }
 
 class Star
@@ -69,6 +58,18 @@ class Star
 class SpaceShip extends Floater  
 {   
     //your code here
+    private int fireX1;
+    private int fireX2;
+    private int fireX3;
+    private int fireX4;
+    private int fireX5;
+    private int fireX6;
+    private int fireY1;
+    private int fireY2;
+    private int fireY3;
+    private int fireY4;
+    private int fireY5;
+    private int fireY6;
     SpaceShip()  
     {
       corners = 38;
@@ -95,6 +96,28 @@ class SpaceShip extends Floater
     public double getDirectionY() {return myDirectionY;}
     public void setPointDirection(int degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
+    public void accelerate (double dAmount)   
+    {          
+      //convert the current direction the floater is pointing to radians    
+      double dRadians =myPointDirection*(Math.PI/180);     
+      //change coordinates of direction of travel    
+      myDirectionX += ((dAmount) * Math.cos(dRadians));    
+      myDirectionY += ((dAmount) * Math.sin(dRadians));       
+      fireX1 = (int)((-8* Math.cos(dRadians)) - (-16 * Math.sin(dRadians))+myCenterX);
+      fireY1 = (int)((-8* Math.sin(dRadians)) + (-16 * Math.cos(dRadians))+myCenterY);
+      fireX2 = (int)((-20* Math.cos(dRadians)) - (-14 * Math.sin(dRadians))+myCenterX);
+      fireY2 = (int)((-20* Math.sin(dRadians)) + (-14 * Math.cos(dRadians))+myCenterY);
+      fireX3 = (int)((-8* Math.cos(dRadians)) - (-12 * Math.sin(dRadians))+myCenterX);
+      fireY3 = (int)((-8* Math.sin(dRadians)) + (-12 * Math.cos(dRadians))+myCenterY);
+      fireX4 = (int)((-8* Math.cos(dRadians)) - (16 * Math.sin(dRadians))+myCenterX);
+      fireY4 = (int)((-8* Math.sin(dRadians)) + (16 * Math.cos(dRadians))+myCenterY);
+      fireX5 = (int)((-20* Math.cos(dRadians)) - (14 * Math.sin(dRadians))+myCenterX);
+      fireY5 = (int)((-20* Math.sin(dRadians)) + (14 * Math.cos(dRadians))+myCenterY);
+      fireX6 = (int)((-8* Math.cos(dRadians)) - (12 * Math.sin(dRadians))+myCenterX);
+      fireY6 = (int)((-8* Math.sin(dRadians)) + (12 * Math.cos(dRadians))+myCenterY);
+      triangle(fireX1, fireY1, fireX2, fireY2, fireX3, fireY3);
+      triangle(fireX4, fireY4, fireX5, fireY5, fireX6, fireY6);
+    }   
 }
 class Asteroid extends Floater
 {
@@ -239,7 +262,8 @@ public void keyPressed()
     dragon.accelerate(0.15);
     dragon.move();
     fill(255,0,0);
-    triangle(fireX1, fireY1, fireX2, fireY2, fireX3, fireY3);
+    stroke(255,0,0);
+    
   }
   if(keyCode == RIGHT)
   {
