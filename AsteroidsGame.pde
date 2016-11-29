@@ -1,18 +1,13 @@
 //your variable declarations here
 Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
+Rocket1 topRocket = new Rocket1();
 ArrayList<Asteroid> rocks = new ArrayList<Asteroid>();
 public void setup() 
-
 {
   //your code here
   size(1000,700);
   background(0);
-  dragon.setX(500);
-  dragon.setY(350);
-  dragon.setDirectionX(0);
-  dragon.setDirectionY(0);
-  dragon.setPointDirection(0);
   for(int i = 0; i < stars.length; i++)
   {
      stars[i] = new Star();
@@ -37,6 +32,7 @@ public void draw()
   }
   dragon.show();
   dragon.move();
+  topRocket.move();
 }
 
 class Star
@@ -57,19 +53,7 @@ class Star
 class SpaceShip extends Floater  
 {   
     //your code here
-    private int fireX1;
-    private int fireX2;
-    private int fireX3;
-    private int fireX4;
-    private int fireX5;
-    private int fireX6;
-    private int fireY1;
-    private int fireY2;
-    private int fireY3;
-    private int fireY4;
-    private int fireY5;
-    private int fireY6;
-    SpaceShip()  
+    SpaceShip()
     {
       corners = 38;
       xCorners = new int[corners];
@@ -95,28 +79,55 @@ class SpaceShip extends Floater
     public double getDirectionY() {return myDirectionY;}
     public void setPointDirection(int degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
-    public void accelerate (double dAmount)   
-    {          
-      //convert the current direction the floater is pointing to radians    
-      double dRadians =myPointDirection*(Math.PI/180);     
-      //change coordinates of direction of travel    
-      myDirectionX += ((dAmount) * Math.cos(dRadians));    
-      myDirectionY += ((dAmount) * Math.sin(dRadians));       
-      fireX1 = (int)((-8* Math.cos(dRadians)) - (-16 * Math.sin(dRadians))+myCenterX);
-      fireY1 = (int)((-8* Math.sin(dRadians)) + (-16 * Math.cos(dRadians))+myCenterY);
-      fireX2 = (int)((-20* Math.cos(dRadians)) - (-14 * Math.sin(dRadians))+myCenterX);
-      fireY2 = (int)((-20* Math.sin(dRadians)) + (-14 * Math.cos(dRadians))+myCenterY);
-      fireX3 = (int)((-8* Math.cos(dRadians)) - (-12 * Math.sin(dRadians))+myCenterX);
-      fireY3 = (int)((-8* Math.sin(dRadians)) + (-12 * Math.cos(dRadians))+myCenterY);
-      fireX4 = (int)((-8* Math.cos(dRadians)) - (16 * Math.sin(dRadians))+myCenterX);
-      fireY4 = (int)((-8* Math.sin(dRadians)) + (16 * Math.cos(dRadians))+myCenterY);
-      fireX5 = (int)((-20* Math.cos(dRadians)) - (14 * Math.sin(dRadians))+myCenterX);
-      fireY5 = (int)((-20* Math.sin(dRadians)) + (14 * Math.cos(dRadians))+myCenterY);
-      fireX6 = (int)((-8* Math.cos(dRadians)) - (12 * Math.sin(dRadians))+myCenterX);
-      fireY6 = (int)((-8* Math.sin(dRadians)) + (12 * Math.cos(dRadians))+myCenterY);
-      triangle(fireX1, fireY1, fireX2, fireY2, fireX3, fireY3);
-      triangle(fireX4, fireY4, fireX5, fireY5, fireX6, fireY6);
+}
+class Rocket1 extends Floater
+{
+  private int myColor1, myColor2, myColor3;
+  Rocket1()
+  {
+    corners = 3;
+    xCorners = new int[corners];
+    yCorners = new int[corners];
+    int[] xS = {-8,-20,-8};
+    int[] yS = {-16,-14,-12};
+    xCorners = xS;
+    yCorners = yS;
+    myColor1 = 255;
+    myColor2 = 0;
+    myColor3 = 0;
+    myCenterX = 500;
+    myCenterY = 350;
+    myDirectionX = 0;
+    myDirectionY = 0;
+    myPointDirection = 0;
+  }
+  public void setX(int x) {myCenterX = x;}
+  public int getX() {return (int)myCenterX;}
+  public void setY(int y) {myCenterY = y;}
+  public int getY() {return (int)myCenterY;}
+  public void setDirectionX(double x) {myDirectionX = x;}
+  public double getDirectionX() {return myDirectionX;}
+  public void setDirectionY(double y) {myDirectionY = y;}
+  public double getDirectionY() {return myDirectionY;}
+  public void setPointDirection(int degrees) {myPointDirection = degrees;}
+  public double getPointDirection() {return myPointDirection;}  
+  public void show ()  //Draws the floater at the current position  
+  {             
+    fill(myColor1,myColor2,myColor3);   
+    stroke(myColor1,myColor2,myColor3);    
+    //convert degrees to radians for sin and cos         
+    double dRadians = myPointDirection*(Math.PI/180);                 
+    int xRotatedTranslated, yRotatedTranslated;    
+    beginShape();         
+    for(int nI = 0; nI < corners; nI++)    
+    {     
+      //rotate and translate the coordinates of the floater using current direction 
+      xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
+      yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
+      vertex(xRotatedTranslated,yRotatedTranslated);    
     }   
+    endShape(CLOSE);  
+  }
 }
 class Asteroid extends Floater
 {
@@ -260,29 +271,42 @@ public void keyPressed()
   {
     dragon.accelerate(0.15);
     dragon.move();
-    fill(255,0,0);
-    stroke(255,0,0);
-    
+    topRocket.accelerate(0.15);
+    topRocket.move();
+    topRocket.show(); 
   }
   if(keyCode == RIGHT)
   {
     dragon.rotate(3);
+    topRocket.rotate(3);
   }
   if(keyCode == LEFT)
   {
     dragon.rotate(-3);
+    topRocket.rotate(-3);
   }
   if(keyCode == DOWN)
   {
     dragon.accelerate(-0.15);
     dragon.move();
+    topRocket.accelerate(-0.15);
+    topRocket.move();
+    topRocket.show();
   }
   if(keyCode == 'H')
   {
-    dragon.setPointDirection((int)(Math.random()*360));
+    int hyperDirection =  (int)(Math.random()*360);
+    int hyperX = (int)(Math.random()*1000);
+    int hyperY = (int)(Math.random()*700);
+    dragon.setPointDirection(hyperDirection);
     dragon.setDirectionX(0);
     dragon.setDirectionY(0);
-    dragon.setX((int)(Math.random()*1000));
-    dragon.setY((int)(Math.random()*700));
+    dragon.setX(hyperX);
+    dragon.setY(hyperY);
+    topRocket.setPointDirection(hyperDirection);
+    topRocket.setDirectionX(0);
+    topRocket.setDirectionY(0);
+    topRocket.setX(hyperX);
+    topRocket.setY(hyperY);    
   }
 }
