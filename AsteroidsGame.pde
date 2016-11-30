@@ -95,11 +95,11 @@ class Rocket1 extends Floater
     myColor1 = 255;
     myColor2 = 0;
     myColor3 = 0;
-    myCenterX = 500;
-    myCenterY = 350;
-    myDirectionX = 0;
-    myDirectionY = 0;
-    myPointDirection = 0;
+    myCenterX = dragon.getX();
+    myCenterY = dragon.getY();
+    myDirectionX = dragon.getDirectionX();
+    myDirectionY = dragon.getDirectionY();
+    myPointDirection = dragon.getPointDirection();
   }
   public void setX(int x) {myCenterX = x;}
   public int getX() {return (int)myCenterX;}
@@ -126,8 +126,31 @@ class Rocket1 extends Floater
       yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
       vertex(xRotatedTranslated,yRotatedTranslated);    
     }   
-    endShape(CLOSE);  
+    endShape();  
   }
+  public void move ()   //move the floater in the current direction of travel
+  {      
+    //change the x and y coordinates by myDirectionX and myDirectionY       
+    myCenterX = dragon.getX();
+    myCenterY = dragon.getY();
+    //wrap around screen    
+    if(myCenterX >width)
+    {     
+      myCenterX = 0;    
+    }    
+    else if (myCenterX<0)
+    {     
+      myCenterX = width;    
+    }    
+    if(myCenterY >height)
+    {    
+      myCenterY = 0;    
+    }   
+    else if (myCenterY < 0)
+    {     
+      myCenterY = height;    
+    }   
+  }    
 }
 class Asteroid extends Floater
 {
