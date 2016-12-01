@@ -124,15 +124,17 @@ class Rocket1 extends Floater
       //rotate and translate the coordinates of the floater using current direction 
       xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
       yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
-      vertex(xRotatedTranslated,yRotatedTranslated);    
+      vertex(xRotatedTranslated,yRotatedTranslated);     
     }   
     endShape();  
   }
   public void move ()   //move the floater in the current direction of travel
-  {      
-    //change the x and y coordinates by myDirectionX and myDirectionY       
+  {            
     myCenterX = dragon.getX();
     myCenterY = dragon.getY();
+    myDirectionX = dragon.getDirectionX();
+    myDirectionY = dragon.getDirectionY();
+    myPointDirection = dragon.getPointDirection();
     //wrap around screen    
     if(myCenterX >width)
     {     
@@ -295,18 +297,19 @@ public void keyPressed()
     dragon.accelerate(0.15);
     dragon.move();
     topRocket.accelerate(0.15);
-    topRocket.move();
     topRocket.show(); 
   }
   if(keyCode == RIGHT)
   {
     dragon.rotate(3);
     topRocket.rotate(3);
+    topRocket.show();
   }
   if(keyCode == LEFT)
   {
     dragon.rotate(-3);
     topRocket.rotate(-3);
+
   }
   if(keyCode == DOWN)
   {
