@@ -3,6 +3,8 @@ Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
 Rocket1 topRocket = new Rocket1();
 ArrayList<Asteroid> rocks = new ArrayList<Asteroid>();
+ArrayList<Integer> xList = new ArrayList<Integer>();
+ArrayList<Integer> yList = new ArrayList<Integer>();
 public void setup() 
 {
   //your code here
@@ -79,19 +81,30 @@ class SpaceShip extends Floater
     public double getDirectionY() {return myDirectionY;}
     public void setPointDirection(int degrees) {myPointDirection = degrees;}
     public double getPointDirection() {return myPointDirection;}
+    public void show ()  //Draws the floater at the current position  
+    {              
+      //convert degrees to radians for sin and cos         
+      fill(myColor);
+      double dRadians = myPointDirection*(Math.PI/180);                 
+      int xRotatedTranslated, yRotatedTranslated;    
+      beginShape();         
+      for(int nI = 0; nI < corners; nI++)    
+      {     
+        //rotate and translate the coordinates of the floater using current direction 
+        xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
+        yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
+        vertex(xRotatedTranslated,yRotatedTranslated);     
+        xList.add(nI, xRotatedTranslated);
+        yList.add(nI, yRotatedTranslated);
+      }   
+      endShape();  
+    }    
 }
 class Rocket1 extends Floater
 {
   private int myColor1, myColor2, myColor3;
   Rocket1()
   {
-    corners = 3;
-    xCorners = new int[corners];
-    yCorners = new int[corners];
-    int[] xS = {-8,-20,-8};
-    int[] yS = {-16,-14,-12};
-    xCorners = xS;
-    yCorners = yS;
     myColor1 = 255;
     myColor2 = 0;
     myColor3 = 0;
@@ -116,17 +129,8 @@ class Rocket1 extends Floater
     fill(myColor1,myColor2,myColor3);   
     stroke(myColor1,myColor2,myColor3);    
     //convert degrees to radians for sin and cos         
-    double dRadians = myPointDirection*(Math.PI/180);                 
-    int xRotatedTranslated, yRotatedTranslated;    
-    beginShape();         
-    for(int nI = 0; nI < corners; nI++)    
-    {     
-      //rotate and translate the coordinates of the floater using current direction 
-      xRotatedTranslated = (int)((xCorners[nI]* Math.cos(dRadians)) - (yCorners[nI] * Math.sin(dRadians))+myCenterX);     
-      yRotatedTranslated = (int)((xCorners[nI]* Math.sin(dRadians)) + (yCorners[nI] * Math.cos(dRadians))+myCenterY);      
-      vertex(xRotatedTranslated,yRotatedTranslated);     
-    }   
-    endShape();  
+    double dRadians = myPointDirection*(Math.PI/180); 
+    triangle(xList.get(11),yList.get(11), (int)((-20* Math.cos(dRadians)) - (-14 * Math.sin(dRadians))+myCenterX),(int)(((-20)* Math.sin(dRadians)) + ((-14) * Math.cos(dRadians))+myCenterY), xList.get(17), yList.get(17));               
   }
   public void move ()   //move the floater in the current direction of travel
   {            
@@ -294,9 +298,9 @@ public void keyPressed()
 {
   if(keyCode == UP)
   {
-    dragon.accelerate(0.15);
+    dragon.accelerate(0.1);
     dragon.move();
-    topRocket.accelerate(0.15);
+    topRocket.accelerate(0.1);
     topRocket.show(); 
   }
   if(keyCode == RIGHT)
@@ -313,9 +317,9 @@ public void keyPressed()
   }
   if(keyCode == DOWN)
   {
-    dragon.accelerate(-0.15);
+    dragon.accelerate(-0.1);
     dragon.move();
-    topRocket.accelerate(-0.15);
+    topRocket.accelerate(-0.1);
     topRocket.move();
     topRocket.show();
   }
