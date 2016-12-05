@@ -1,7 +1,7 @@
-class Rocket1 extends Floater
+class Rocket2 extends Floater
 {
   private int myColor1, myColor2, myColor3;
-  Rocket1()
+  Rocket2()
   {
     myColor1 = 255;
     myColor2 = 0;
@@ -28,7 +28,7 @@ class Rocket1 extends Floater
     stroke(myColor1,myColor2,myColor3);    
     //convert degrees to radians for sin and cos         
     double dRadians = myPointDirection*(Math.PI/180); 
-    triangle(xList.get(11),yList.get(11), xList.get(11)-2-(10*cos((float)dRadians)), yList.get(17)-2-(10*sin((float)dRadians)), xList.get(17), yList.get(17));               
+    triangle(xList.get(37),yList.get(37), xList.get(37)-2-(10*cos((float)dRadians)), yList.get(31)-2-(10*sin((float)dRadians)), xList.get(31), yList.get(31));               
   }
   public void move ()   //move the floater in the current direction of travel
   {            
