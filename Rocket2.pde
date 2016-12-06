@@ -4,9 +4,9 @@ class Rocket2 extends Floater
   Rocket2()
   {
     myColor1 = 255;
-    myColor2 = 0;
     myColor3 = 0;
     myCenterX = dragon.getX();
+    myColor2 = 0;
     myCenterY = dragon.getY();
     myDirectionX = dragon.getDirectionX();
     myDirectionY = dragon.getDirectionY();
@@ -28,7 +28,7 @@ class Rocket2 extends Floater
     stroke(myColor1,myColor2,myColor3);    
     //convert degrees to radians for sin and cos         
     double dRadians = myPointDirection*(Math.PI/180); 
-    triangle(xList.get(37),yList.get(37), xList.get(37)-2-(10*cos((float)dRadians)), yList.get(31)-2-(10*sin((float)dRadians)), xList.get(31), yList.get(31));               
+    triangle(xList.get(33),yList.get(33), xList.get(33)-(2*sin((float)dRadians))-(10*cos((float)dRadians)), yList.get(39)-(2*cos((float)dRadians))-(10*sin((float)dRadians)), xList.get(39), yList.get(39));               
   }
   public void move ()   //move the floater in the current direction of travel
   {            

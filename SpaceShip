@@ -3,11 +3,11 @@ class SpaceShip extends Floater
     //your code here
     SpaceShip()
     {
-      corners = 40;
+      corners = 38;
       xCorners = new int[corners];
       yCorners = new int[corners];
-      int[] xS = {-4,2,2,2,4,8,17,8,4,2,2,2,-4,-8,-6,-4,-6,-4,-6,-8,-6,-4,-6,-4,-6,-8,-19,-8,-6,-4,-6,-4,-6,-8,-6,-4,-6,-4,-6,-8};
-      int[] yS = {18,15,11,2,2,6,0,-6,-2,-2,-11,-15,-18,-16,-15,-15,-13,11,-10,-12,-8,-8,-6,-4,-4,-2,0,2,4,4,6,8,8,12,10,11,13,15,15,16};
+      int[] xS = {-4,2,2,4,8,17,8,4,2,2,-4,-8,-6,-4,-6,-4,-6,-8,-6,-4,-6,-4,-6,-8,-19,-8,-6,-4,-6,-4,-6,-8,-6,-4,-6,-4,-6,-8};
+      int[] yS = {18,15,2,2,6,0,-6,-2,-2,-15,-18,-16,-15,-15,-13,11,-10,-12,-8,-8,-6,-4,-4,-2,0,2,4,4,6,8,8,12,10,11,13,15,15,16};
       xCorners = xS;
       yCorners = yS;    
       myColor = 200;
@@ -31,7 +31,6 @@ class SpaceShip extends Floater
     {              
       //convert degrees to radians for sin and cos         
       fill(myColor);
-      stroke(125);
       double dRadians = myPointDirection*(Math.PI/180);                 
       int xRotatedTranslated, yRotatedTranslated;    
       beginShape();         

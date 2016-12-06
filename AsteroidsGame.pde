@@ -3,6 +3,8 @@ Star[] stars = new Star[200];
 SpaceShip dragon = new SpaceShip();
 Rocket1 topRocket = new Rocket1();
 Rocket2 botRocket = new Rocket2();
+Rocket3 topThruster = new Rocket3();
+Rocket4 botThruster = new Rocket4();
 ArrayList<Asteroid> rocks = new ArrayList<Asteroid>();
 ArrayList<Integer> xList = new ArrayList<Integer>();
 ArrayList<Integer> yList = new ArrayList<Integer>();
@@ -37,6 +39,8 @@ public void draw()
   dragon.move();
   topRocket.move();
   botRocket.move();
+  topThruster.move();
+  botThruster.move();
 }
 public void keyPressed()
 {
@@ -44,9 +48,7 @@ public void keyPressed()
   {
     dragon.accelerate(0.1);
     dragon.move();
-    topRocket.accelerate(0.1);
     topRocket.show(); 
-    botRocket.accelerate(0.1);
     botRocket.show();
   }
   if(keyCode == RIGHT)
@@ -65,9 +67,10 @@ public void keyPressed()
   {
     dragon.accelerate(-0.1);
     dragon.move();
-    topRocket.accelerate(-0.1);
-    topRocket.move();
-    topRocket.show();
+    topThruster.move();
+    topThruster.show();
+    botThruster.move();
+    botThruster.show();
   }
   if(keyCode == 'H')
   {
