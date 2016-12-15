@@ -41,6 +41,17 @@ public void draw()
   botRocket.move();
   topThruster.move();
   botThruster.move();
+  for(int i = 0; i < rocks.size(); i++)
+  {
+    for(int j = 0; j < xList.size(); j++)
+    {
+      if(xList.get(j) <= ((rocks.get(i).getX())+18) && xList.get(j) >= ((rocks.get(i).getX())-18) && yList.get(j) <= ((rocks.get(i).getY())+18) && yList.get(j) >= ((rocks.get(i).getY())-18))
+      {
+        rocks.remove(i);
+        break;
+      }
+    }
+  }
 }
 public void keyPressed()
 {
