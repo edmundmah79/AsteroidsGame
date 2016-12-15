@@ -3,10 +3,10 @@ class Rocket2 extends Floater
   private int myColor1, myColor2, myColor3;
   Rocket2()
   {
-    myColor1 = 255;
-    myColor3 = 0;
+    myColor1 = 226;
+    myColor2 = 88;
+    myColor3 = 34;
     myCenterX = dragon.getX();
-    myColor2 = 0;
     myCenterY = dragon.getY();
     myDirectionX = dragon.getDirectionX();
     myDirectionY = dragon.getDirectionY();

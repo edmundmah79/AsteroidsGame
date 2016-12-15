@@ -45,7 +45,7 @@ public void draw()
   {
     for(int j = 0; j < xList.size(); j++)
     {
-      if(xList.get(j) <= ((rocks.get(i).getX())+18) && xList.get(j) >= ((rocks.get(i).getX())-18) && yList.get(j) <= ((rocks.get(i).getY())+18) && yList.get(j) >= ((rocks.get(i).getY())-18))
+      if(xList.get(j) <= ((rocks.get(i).getX())+20) && xList.get(j) >= ((rocks.get(i).getX())-20) && yList.get(j) <= ((rocks.get(i).getY())+20) && yList.get(j) >= ((rocks.get(i).getY())-20))
       {
         rocks.remove(i);
         break;
@@ -103,5 +103,9 @@ public void keyPressed()
     botRocket.setDirectionY(0);
     botRocket.setX(hyperX);
     botRocket.setY(hyperY);    
+  }
+  if(keyCode == 49)
+  {
+
   }
 }
