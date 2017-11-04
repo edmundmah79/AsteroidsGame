@@ -104,8 +104,4 @@ public void keyPressed()
     botRocket.setX(hyperX);
     botRocket.setY(hyperY);    
   }
-  if(keyCode == 49)
-  {
-
-  }
 }
